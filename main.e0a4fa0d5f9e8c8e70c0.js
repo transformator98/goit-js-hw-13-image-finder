@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[0],{L1EO:function(n,t,o){},QfWi:function(n,t,o){"use strict";o.r(t);o("JBxO"),o("FdtR"),o("L1EO"),o("jC8I");fetch("https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=cat&page=1&per_page=12&key=18773643-f1542c573d467a3c4fb890edb").then((function(n){return n.json()})).then((function(n){var t=n.articles;return console.log(t)}))},jC8I:function(n,t){}},[["QfWi",1,2]]]);
+//# sourceMappingURL=main.e0a4fa0d5f9e8c8e70c0.js.map
