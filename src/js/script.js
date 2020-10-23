@@ -2,6 +2,7 @@ import refs from './refs';
 import newImage from './apiService';
 import updateImageMarkup from './update-image-markup';
 import LoadMoreBtn from './components/load-more-button';
+import * as basicLightbox from 'basiclightbox';
 
 const loadMoreBtn = new LoadMoreBtn({
   selector: 'button[data-action="load-more"]',
@@ -9,6 +10,7 @@ const loadMoreBtn = new LoadMoreBtn({
 });
 
 refs.searchForm.addEventListener('submit', searchFormSubmitHandler);
+refs.galleryContainer.addEventListener('click', onImageClick);
 loadMoreBtn.refs.button.addEventListener('click', fetchImages);
 
 function searchFormSubmitHandler(event) {
@@ -17,10 +19,10 @@ function searchFormSubmitHandler(event) {
   newImage.query = form.elements.query.value;
   fetchImages();
   form.reset();
-  clearArticlesContainer();
+  clearGalleryContainer();
 }
 
-function clearArticlesContainer() {
+function clearGalleryContainer() {
   refs.galleryContainer.innerHTML = ''; //сбросить запрос
 }
 function fetchImages() {
@@ -34,4 +36,20 @@ function fetchImages() {
       behavior: 'smooth',
     });
   });
+}
+
+function onImageClick(event) {
+  const imageClick = event.target;
+  if (imageClick.nodeName !== 'IMG') {
+    return;
+  }
+  const src = imageClick.dataset.source;
+  console.dir(imageClick.dataset.source);
+  basicLightbox
+    .create(
+      `
+  	<img width="1400" height="900" src="${src}">
+  `,
+    )
+    .show();
 }
